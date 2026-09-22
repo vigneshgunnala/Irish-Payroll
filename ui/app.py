@@ -8,6 +8,14 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import streamlit as st  # noqa: E402
+import os  # noqa: E402
+
+try:
+    for _k, _v in st.secrets.items():
+        if isinstance(_v, (str, int, float, bool)):
+            os.environ.setdefault(_k, str(_v))
+except Exception:  # noqa: BLE001
+    pass
 from sqlalchemy import select  # noqa: E402
 
 from app.core.security import Perm, verify_password  # noqa: E402
