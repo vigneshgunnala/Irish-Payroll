@@ -1,0 +1,5 @@
+employee_number,type,amount,description,hours
+E0001,OVERTIME,184.62,Overtime 8h @ 1.5,8
+E0002,BONUS,750,Quarterly bonus,
+E0003,COMMISSION,420,Sales commission,
+E0004,DEDUCTION:UNION,18.50,Union subscription,

@@ -1,0 +1,19 @@
+{
+  "employees_processed": 235,
+  "employees_successful": 235,
+  "employees_with_errors": 0,
+  "employees_requiring_review": 2,
+  "gross_pay": "1196636.16",
+  "bik": "12219.14",
+  "paye": "224884.42",
+  "usc": "36324.15",
+  "prsi_ee": "49598.11",
+  "prsi_er": "128255.17",
+  "lpt": "5160.00",
+  "pension_ee": "38779.41",
+  "pension_er": "32971.72",
+  "other_deductions": "240.50",
+  "net_pay": "841649.57",
+  "employer_cost": "1370082.19",
+  "statutory_liability": "444221.85"
+}

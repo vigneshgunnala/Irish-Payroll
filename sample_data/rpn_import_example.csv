@@ -1,0 +1,3 @@
+employee_number,rpn_number,tax_basis,annual_tax_credits,annual_srcop,usc_status,lpt_annual,prior_pay_for_tax,prior_tax,prior_usc_pay,prior_usc,effective_date
+E0001,RPN2026000012,CUMULATIVE,4000,44000,ORDINARY,315,0,0,0,0,2026-09-01
+E0002,RPN2026000022,WEEK1_MONTH1,4000,44000,ORDINARY,0,0,0,0,0,2026-09-01

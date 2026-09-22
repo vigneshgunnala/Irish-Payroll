@@ -1,0 +1,571 @@
+{
+  "employee_result_id": 1669,
+  "rules_used": [
+    "BIK-2026-CAR-CATEGORIES",
+    "BIK-2026-CAR-OMV-REDUCTION",
+    "BIK-2026-CAR-PERCENTAGES",
+    "BIK-2026-NOTIONAL-PAY",
+    "PEN-2026-TREATMENT",
+    "PEN-2026-AGE-LIMITS",
+    "PEN-2026-EARNINGS-CAP",
+    "PAYE-2026-PERIOD-ROUNDING",
+    "PAYE-2026-RATE-STD",
+    "PAYE-2026-RATE-HIGH",
+    "USC-2026-BANDS",
+    "PRSI-2026-PERIOD-CONVERSION",
+    "PRSI-2026-A-H1",
+    "LPT-2026-METHOD"
+  ],
+  "trace": [
+    {
+      "component": "GROSS",
+      "step": "Gross pay",
+      "description": "Sum of cash earnings",
+      "calculation": "Basic salary €4,916.67 + Sales commission €900.00",
+      "result": "5816.67",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "BIK",
+      "step": "Company car",
+      "description": "Category C (135.0 g/km), 41,000 business km",
+      "calculation": "(€32,000.00 − €10,000.00 OMV reduction) × 18% − €1,200.00 employee contribution = €2,760.00 p.a. ÷ 12",
+      "result": "230.00",
+      "inputs": {
+        "category": "C",
+        "annual_cash_equivalent": "2760.00"
+      },
+      "rate": "18%",
+      "rule": {
+        "rule_id": "BIK-2026-CAR-PERCENTAGES",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/employing-people/benefit-in-kind-for-employers/private-use-company-cars/calculate-value-benefit.aspx",
+        "source_document": "Private use of company cars - How to calculate the taxable benefit",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "BIK",
+      "step": "Notional pay",
+      "description": "Total taxable benefit added to pay for PAYE, USC and PRSI",
+      "calculation": "€230.00",
+      "result": "230.00",
+      "inputs": {},
+      "rate": null,
+      "rule": {
+        "rule_id": "BIK-2026-NOTIONAL-PAY",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/tax-professionals/tdm/income-tax-capital-gains-tax-corporation-tax/part-42/42-04-35a.pdf",
+        "source_document": "Tax and Duty Manual Part 42-04-35A - The Employers' Guide to PAYE",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "PENSION",
+      "step": "OCCUPATIONAL contribution",
+      "description": "Treatment of employee contribution (net pay arrangement)",
+      "calculation": "employee €393.33: PAYE relief yes, USC relief no, PRSI relief no; employer €245.83",
+      "result": "393.33",
+      "inputs": {},
+      "rate": null,
+      "rule": {
+        "rule_id": "PEN-2026-TREATMENT",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/tax-professionals/tdm/income-tax-capital-gains-tax-corporation-tax/part-42/42-04-35a.pdf",
+        "source_document": "Tax and Duty Manual Part 42-04-35A - The Employers' Guide to PAYE",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "PENSION",
+      "step": "Relief limit",
+      "description": "Age-related limit on annualised earnings (capped)",
+      "calculation": "age 63 → 40% × min(€69,800.04, €115,000.00) = €27,920.02; remaining €25,166.71",
+      "result": "393.33",
+      "inputs": {},
+      "rate": null,
+      "rule": {
+        "rule_id": "PEN-2026-AGE-LIMITS",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/jobs-and-pensions/pension/relief/tax-relief-limits.aspx",
+        "source_document": "Tax relief limits on pension contributions",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "GROSS",
+      "step": "Pay for tax",
+      "description": "Gross + BIK − pension relieved under net pay arrangement",
+      "calculation": "€5,816.67 + €230.00 − €393.33",
+      "result": "5653.34",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "GROSS",
+      "step": "Pay for USC",
+      "description": "Gross + BIK (pension NOT deducted)",
+      "calculation": "€5,816.67 + €230.00",
+      "result": "6046.67",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "GROSS",
+      "step": "Pay for PRSI",
+      "description": "Gross + BIK (pension NOT deducted)",
+      "calculation": "€5,816.67 + €230.00",
+      "result": "6046.67",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "PAYE",
+      "step": "Basis selection",
+      "description": "Basis taken from the RPN",
+      "calculation": "RPN tax basis = CUMULATIVE",
+      "result": "CUMULATIVE",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "PAYE",
+      "step": "Periodise RPN",
+      "description": "Annual RPN figures → per monthly period (rounded up to the cent)",
+      "calculation": "cut-off €53,000.00 ÷ 12 = €4,416.67; credits €6,000.00 ÷ 12 = €500.00",
+      "result": "4416.67",
+      "inputs": {
+        "period_credit": "500.00"
+      },
+      "rate": null,
+      "rule": {
+        "rule_id": "PAYE-2026-PERIOD-ROUNDING",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/jobs-and-pensions/documents/emergency-rates.pdf",
+        "source_document": "RPC020012 - The Emergency Basis of Tax & USC Deduction (2022-2026 tables)",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "PAYE",
+      "step": "Cumulative pay",
+      "description": "Previous YTD pay + this period",
+      "calculation": "prior employment €0.00 + this employment YTD €38,623.38 + this period €5,653.34",
+      "result": "44276.72",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "PAYE",
+      "step": "Cumulative allowances",
+      "description": "Cut-off and credits to period 8",
+      "calculation": "cut-off €4,416.67 × 8 = €35,333.36; credits €500.00 × 8 = €4,000.00",
+      "result": "35333.36",
+      "inputs": {
+        "cumulative_credits": "4000.00"
+      },
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "PAYE",
+      "step": "Standard-rate portion",
+      "description": "Cumulative: pay up to the standard rate cut-off point",
+      "calculation": "min(€44,276.72, €35,333.36) = €35,333.36 × 20%",
+      "result": "7066.67",
+      "inputs": {
+        "taxable_at_standard_rate": "35333.36"
+      },
+      "rate": "20%",
+      "rule": {
+        "rule_id": "PAYE-2026-RATE-STD",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx",
+        "source_document": "Tax rates, bands and reliefs - Tax relief charts (2026 and 2025)",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "PAYE",
+      "step": "Higher-rate portion",
+      "description": "Cumulative: pay above the standard rate cut-off point",
+      "calculation": "max(€44,276.72 − €35,333.36, 0) = €8,943.36 × 40%",
+      "result": "3577.34",
+      "inputs": {
+        "taxable_at_higher_rate": "8943.36"
+      },
+      "rate": "40%",
+      "rule": {
+        "rule_id": "PAYE-2026-RATE-HIGH",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx",
+        "source_document": "Tax rates, bands and reliefs - Tax relief charts (2026 and 2025)",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "PAYE",
+      "step": "Gross tax",
+      "description": "Cumulative: gross income tax",
+      "calculation": "€7,066.67 + €3,577.34",
+      "result": "10644.01",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "PAYE",
+      "step": "Tax credits",
+      "description": "Cumulative: tax credits applied (tax cannot go below zero)",
+      "calculation": "max(€10,644.01 − €4,000.00, 0)",
+      "result": "6644.01",
+      "inputs": {
+        "tax_credits": "4000.00"
+      },
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "PAYE",
+      "step": "PAYE due",
+      "description": "New cumulative liability − tax already deducted (negative = refund)",
+      "calculation": "€6,644.01 − (€0.00 + €5,766.02)",
+      "result": "877.99",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "USC",
+      "step": "Cumulative USC pay",
+      "description": "Previous YTD USC pay + this period",
+      "calculation": "€0.00 + €41,376.69 + €6,046.67",
+      "result": "47423.36",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "USC",
+      "step": "Band 1",
+      "description": "Cumulative to period 8: USC band 1 (€0.00 – €8,008.00)",
+      "calculation": "€8,008.00 × 0.5%",
+      "result": "40.04",
+      "inputs": {
+        "band_from": "0.00",
+        "band_to": "8008.00"
+      },
+      "rate": "0.5%",
+      "rule": {
+        "rule_id": "USC-2026-BANDS",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/jobs-and-pensions/usc/standard-rates-thresholds.aspx",
+        "source_document": "Standard rates and thresholds of USC",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "USC",
+      "step": "Band 2",
+      "description": "Cumulative to period 8: USC band 2 (€8,008.00 – €19,133.36)",
+      "calculation": "€11,125.36 × 2%",
+      "result": "222.51",
+      "inputs": {
+        "band_from": "8008.00",
+        "band_to": "19133.36"
+      },
+      "rate": "2%",
+      "rule": {
+        "rule_id": "USC-2026-BANDS",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/jobs-and-pensions/usc/standard-rates-thresholds.aspx",
+        "source_document": "Standard rates and thresholds of USC",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "USC",
+      "step": "Band 3",
+      "description": "Cumulative to period 8: USC band 3 (€19,133.36 – €46,696.00)",
+      "calculation": "€27,562.64 × 3%",
+      "result": "826.88",
+      "inputs": {
+        "band_from": "19133.36",
+        "band_to": "46696.00"
+      },
+      "rate": "3%",
+      "rule": {
+        "rule_id": "USC-2026-BANDS",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/jobs-and-pensions/usc/standard-rates-thresholds.aspx",
+        "source_document": "Standard rates and thresholds of USC",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "USC",
+      "step": "Band 4",
+      "description": "Cumulative to period 8: USC band 4 (€46,696.00 – ∞)",
+      "calculation": "€727.36 × 8%",
+      "result": "58.19",
+      "inputs": {
+        "band_from": "46696.00",
+        "band_to": "open"
+      },
+      "rate": "8%",
+      "rule": {
+        "rule_id": "USC-2026-BANDS",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/jobs-and-pensions/usc/standard-rates-thresholds.aspx",
+        "source_document": "Standard rates and thresholds of USC",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "USC",
+      "step": "Total USC",
+      "description": "Cumulative to period 8: total",
+      "calculation": "sum of bands",
+      "result": "1147.62",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "USC",
+      "step": "USC due",
+      "description": "Cumulative USC − USC already deducted",
+      "calculation": "€1,147.62 − €994.67",
+      "result": "152.95",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "PRSI",
+      "step": "Reckonable pay",
+      "description": "Pay for PRSI (includes BIK; employee pension NOT deducted)",
+      "calculation": "€6,046.67 for a monthly period (4.333333333333 weeks)",
+      "result": "6046.67",
+      "inputs": {
+        "weeks_per_period": "4.333333333333",
+        "insurable_weeks": 4
+      },
+      "rate": null,
+      "rule": {
+        "rule_id": "PRSI-2026-PERIOD-CONVERSION",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Department of Social Protection",
+        "source_url": "https://assets.gov.ie/static/documents/cb168977/PRSI_C20260116_Contribution_Rates_and_User_Guide_-_SW_14_-_English_Version_-_January_2026_.pdf-web.pdf",
+        "source_document": "SW14 - PRSI Contribution Rates and User Guide, January 2026",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "PRSI",
+      "step": "Subclass",
+      "description": "Class A subclass from weekly-equivalent earnings",
+      "calculation": "→ A1",
+      "result": "A1",
+      "inputs": {},
+      "rate": null,
+      "rule": {
+        "rule_id": "PRSI-2026-A-H1",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-09-30",
+        "source": "Department of Social Protection",
+        "source_url": "https://assets.gov.ie/static/documents/cb168977/PRSI_C20260116_Contribution_Rates_and_User_Guide_-_SW_14_-_English_Version_-_January_2026_.pdf-web.pdf",
+        "source_document": "SW14 - PRSI Contribution Rates and User Guide, January 2026",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "PRSI",
+      "step": "Employee PRSI (before credit)",
+      "description": "Employee rate on ALL reckonable pay",
+      "calculation": "€6,046.67 × 4.2%",
+      "result": "253.96",
+      "inputs": {},
+      "rate": "4.2%",
+      "rule": {
+        "rule_id": "PRSI-2026-A-H1",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-09-30",
+        "source": "Department of Social Protection",
+        "source_url": "https://assets.gov.ie/static/documents/cb168977/PRSI_C20260116_Contribution_Rates_and_User_Guide_-_SW_14_-_English_Version_-_January_2026_.pdf-web.pdf",
+        "source_document": "SW14 - PRSI Contribution Rates and User Guide, January 2026",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "PRSI",
+      "step": "PRSI credit",
+      "description": "Earnings outside the tapered credit band",
+      "calculation": "€6,046.67 not in €1,525.38–€1,837.33",
+      "result": "0.00",
+      "inputs": {},
+      "rate": null,
+      "rule": {
+        "rule_id": "PRSI-2026-A-H1",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-09-30",
+        "source": "Department of Social Protection",
+        "source_url": "https://assets.gov.ie/static/documents/cb168977/PRSI_C20260116_Contribution_Rates_and_User_Guide_-_SW_14_-_English_Version_-_January_2026_.pdf-web.pdf",
+        "source_document": "SW14 - PRSI Contribution Rates and User Guide, January 2026",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "PRSI",
+      "step": "Employee PRSI",
+      "description": "Employee PRSI after credit",
+      "calculation": "€253.96 − €0.00",
+      "result": "253.96",
+      "inputs": {},
+      "rate": null,
+      "rule": {
+        "rule_id": "PRSI-2026-A-H1",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-09-30",
+        "source": "Department of Social Protection",
+        "source_url": "https://assets.gov.ie/static/documents/cb168977/PRSI_C20260116_Contribution_Rates_and_User_Guide_-_SW_14_-_English_Version_-_January_2026_.pdf-web.pdf",
+        "source_document": "SW14 - PRSI Contribution Rates and User Guide, January 2026",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "PRSI",
+      "step": "Employer PRSI",
+      "description": "Employer rate on ALL reckonable pay (lower rate if within the employer threshold)",
+      "calculation": "€6,046.67 > €2,392.00 → €6,046.67 × 11.25%",
+      "result": "680.25",
+      "inputs": {},
+      "rate": "11.25%",
+      "rule": {
+        "rule_id": "PRSI-2026-A-H1",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-09-30",
+        "source": "Department of Social Protection",
+        "source_url": "https://assets.gov.ie/static/documents/cb168977/PRSI_C20260116_Contribution_Rates_and_User_Guide_-_SW_14_-_English_Version_-_January_2026_.pdf-web.pdf",
+        "source_document": "SW14 - PRSI Contribution Rates and User Guide, January 2026",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "LPT",
+      "step": "LPT deduction",
+      "description": "Local Property Tax per RPN instruction (spread equally over the year)",
+      "calculation": "€495.00 ÷ 12",
+      "result": "41.25",
+      "inputs": {
+        "annual_lpt_on_rpn": "495"
+      },
+      "rate": null,
+      "rule": {
+        "rule_id": "LPT-2026-METHOD",
+        "rule_version": "IE-2026",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "source": "Revenue Commissioners",
+        "source_url": "https://www.revenue.ie/en/employing-people/paying-your-employees-tax-to-revenue/deduction-of-lpt.aspx",
+        "source_document": "Deduction of Local Property Tax (LPT)",
+        "verified_date": "2026-09-21",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "component": "NET",
+      "step": "Net pay",
+      "description": "Gross − PAYE − USC − employee PRSI − LPT − employee pension − other deductions",
+      "calculation": "€5,816.67 − €877.99 − €152.95 − €253.96 − €41.25 − €393.33 − €0.00",
+      "result": "4097.19",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "EMPLOYER",
+      "step": "Employer cost",
+      "description": "Gross + employer PRSI + employer pension + benefits (BIK value)",
+      "calculation": "€5,816.67 + €680.25 + €245.83 + €230.00",
+      "result": "6972.75",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    },
+    {
+      "component": "LIABILITY",
+      "step": "Statutory liability",
+      "description": "PAYE + USC + employee PRSI + employer PRSI + LPT",
+      "calculation": "€877.99 + €152.95 + €253.96 + €680.25 + €41.25",
+      "result": "2006.40",
+      "inputs": {},
+      "rate": null,
+      "rule": null
+    }
+  ]
+}

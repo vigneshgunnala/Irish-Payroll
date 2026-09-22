@@ -1,0 +1,45 @@
+# docker compose up --build   → API http://localhost:8000/docs · UI http://localhost:8501
+# Copy .env.example to .env first and set real secrets.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: payroll
+      POSTGRES_USER: payroll
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U payroll -d payroll"]
+      interval: 5s
+      retries: 10
+
+  migrate:
+    build: .
+    env_file: .env
+    environment:
+      PAYROLL_DATABASE_URL: postgresql+psycopg://payroll:${POSTGRES_PASSWORD}@db:5432/payroll
+    command: sh -c "alembic upgrade head && python -m scripts.seed"
+    depends_on:
+      db: {condition: service_healthy}
+
+  api:
+    build: .
+    env_file: .env
+    environment:
+      PAYROLL_DATABASE_URL: postgresql+psycopg://payroll:${POSTGRES_PASSWORD}@db:5432/payroll
+    ports: ["8000:8000"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
+  ui:
+    build: .
+    env_file: .env
+    environment:
+      PAYROLL_DATABASE_URL: postgresql+psycopg://payroll:${POSTGRES_PASSWORD}@db:5432/payroll
+    command: streamlit run ui/app.py --server.port 8501 --server.address 0.0.0.0
+    ports: ["8501:8501"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
+volumes:
+  pgdata:

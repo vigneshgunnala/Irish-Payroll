@@ -1,0 +1,361 @@
+{
+  "rule_set_id": "IE-2026",
+  "jurisdiction": "IE",
+  "tax_year": 2026,
+  "description": "Irish statutory payroll parameters for tax year 2026 (1 Jan 2026 - 31 Dec 2026). Every value below was checked against the cited official source on the verified_date shown.",
+  "sources": {
+    "REV_TAX_CHART": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx",
+      "document": "Tax rates, bands and reliefs - Tax relief charts (2026 and 2025)"
+    },
+    "REV_BUDGET_2026": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/corporate/press-office/budget-information/current-year/budget-summary.pdf",
+      "document": "Budget 2026 Summary"
+    },
+    "REV_USC_STD": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/jobs-and-pensions/usc/standard-rates-thresholds.aspx",
+      "document": "Standard rates and thresholds of USC"
+    },
+    "REV_USC_OVERVIEW": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/jobs-and-pensions/usc/index.aspx",
+      "document": "Universal Social Charge (USC) overview"
+    },
+    "REV_USC_REDUCED": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/jobs-and-pensions/usc/reduced-rates.aspx",
+      "document": "Reduced rates of USC"
+    },
+    "REV_EMERGENCY_PDF": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/jobs-and-pensions/documents/emergency-rates.pdf",
+      "document": "RPC020012 - The Emergency Basis of Tax & USC Deduction (2022-2026 tables)"
+    },
+    "REV_EMERGENCY_BASIS": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/employing-people/paying-an-employee/methods-of-calculating-tax/emergency-basis.aspx",
+      "document": "Emergency basis - methods of calculating tax"
+    },
+    "DSP_ADVANCE_NOTICE_2026": {
+      "authority": "Department of Social Protection",
+      "url": "https://assets.gov.ie/static/documents/b9146265/20251008_Advance_Notice_2026_Final.pdf",
+      "document": "Advance Notice for 2026 - PRSI changes (8 Oct 2025)"
+    },
+    "DSP_SW14_2026": {
+      "authority": "Department of Social Protection",
+      "url": "https://assets.gov.ie/static/documents/cb168977/PRSI_C20260116_Contribution_Rates_and_User_Guide_-_SW_14_-_English_Version_-_January_2026_.pdf-web.pdf",
+      "document": "SW14 - PRSI Contribution Rates and User Guide, January 2026"
+    },
+    "REV_EMPLOYERS_GUIDE": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/tax-professionals/tdm/income-tax-capital-gains-tax-corporation-tax/part-42/42-04-35a.pdf",
+      "document": "Tax and Duty Manual Part 42-04-35A - The Employers' Guide to PAYE"
+    },
+    "REV_LPT_DEDUCTION": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/employing-people/paying-your-employees-tax-to-revenue/deduction-of-lpt.aspx",
+      "document": "Deduction of Local Property Tax (LPT)"
+    },
+    "REV_PENSION_RELIEF": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/jobs-and-pensions/pensions/tax-relief-for-pension-contributions.aspx",
+      "document": "Tax relief for pension contributions"
+    },
+    "REV_PENSION_LIMITS": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/jobs-and-pensions/pension/relief/tax-relief-limits.aspx",
+      "document": "Tax relief limits on pension contributions"
+    },
+    "REV_BIK_CAR": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/employing-people/benefit-in-kind-for-employers/private-use-company-cars/calculate-value-benefit.aspx",
+      "document": "Private use of company cars - How to calculate the taxable benefit"
+    },
+    "REV_BIK_MEDICAL": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/employing-people/benefit-in-kind-for-employers/valuation-of-benefits/payment-medical-insurance-employees.aspx",
+      "document": "Payment of medical insurance for employees"
+    },
+    "REV_BIK_SMALL": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/employing-people/benefit-in-kind-for-employers/valuation-of-benefits/small-benefit-exemption.aspx",
+      "document": "Small Benefit Exemption"
+    }
+  },
+  "rules": [
+    {"rule_id": "PAYE-2026-RATE-STD", "category": "PAYE", "parameter": "standard_rate", "value": "0.20", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_TAX_CHART", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"€44,000 @ 20%, balance @ 40%\" (single). 20% standard rate."},
+    {"rule_id": "PAYE-2026-RATE-HIGH", "category": "PAYE", "parameter": "higher_rate", "value": "0.40", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_TAX_CHART", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Balance above the standard rate cut-off point taxed at 40%."},
+    {"rule_id": "PAYE-2026-SRCOP-SINGLE", "category": "PAYE", "parameter": "srcop_single", "value": "44000", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_TAX_CHART", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Single / widowed without dependent children. Reference only - the employee's actual SRCOP comes from their RPN."},
+    {"rule_id": "PAYE-2026-SRCOP-ONEPARENT", "category": "PAYE", "parameter": "srcop_one_parent", "value": "48000", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_TAX_CHART", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Single / widowed qualifying for Single Person Child Carer Credit. Reference only."},
+    {"rule_id": "PAYE-2026-SRCOP-MARRIED1", "category": "PAYE", "parameter": "srcop_married_one_income", "value": "53000", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_TAX_CHART", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Married / civil partners, one income. Reference only."},
+    {"rule_id": "PAYE-2026-SRCOP-MARRIED2-INC", "category": "PAYE", "parameter": "srcop_married_two_income_max_increase", "value": "35000", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_TAX_CHART", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Married two incomes: €53,000 with an increase of up to €35,000. Reference only."},
+    {"rule_id": "PAYE-2026-CREDIT-PERSONAL-SINGLE", "category": "PAYE", "parameter": "credit_personal_single", "value": "2000", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_TAX_CHART", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Reference only; RPN credits are authoritative."},
+    {"rule_id": "PAYE-2026-CREDIT-PERSONAL-MARRIED", "category": "PAYE", "parameter": "credit_personal_married", "value": "4000", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_TAX_CHART", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Reference only."},
+    {"rule_id": "PAYE-2026-CREDIT-EMPLOYEE", "category": "PAYE", "parameter": "credit_employee", "value": "2000", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_TAX_CHART", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Employee (PAYE) tax credit. Reference only."},
+    {"rule_id": "PAYE-2026-PERIOD-ROUNDING", "category": "PAYE", "parameter": "period_amount_rounding", "value": "ROUND_UP_CENT", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_EMERGENCY_PDF", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Revenue's own periodised figures round up to the next cent: €44,000/52 = 846.1538 is published as €846.16 (weekly emergency cut-off). Applied to periodised cut-offs and credits."},
+
+    {"rule_id": "EMRG-2026-SRCOP-WEEKLY", "category": "EMERGENCY", "parameter": "srcop_weekly_weeks_1_4", "value": "846.16", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_EMERGENCY_PDF", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "PPSN provided: weekly cut-off €846.16 in weeks 1-4, €0.00 thereafter (all at 40%)."},
+    {"rule_id": "EMRG-2026-SRCOP-WEEKS", "category": "EMERGENCY", "parameter": "srcop_weekly_weeks_count", "value": "4", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_EMERGENCY_BASIS", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"An employer must give the employee a tax cut-off point for their first four weeks of employment.\""},
+    {"rule_id": "EMRG-2026-SRCOP-MONTHLY", "category": "EMERGENCY", "parameter": "srcop_monthly_month_1", "value": "3666.67", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_EMERGENCY_PDF", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "PPSN provided: monthly cut-off €3,666.67 in month 1, €0.00 thereafter."},
+    {"rule_id": "EMRG-2026-CREDITS", "category": "EMERGENCY", "parameter": "tax_credits", "value": "0", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_EMERGENCY_PDF", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "No tax credits on the emergency basis."},
+    {"rule_id": "EMRG-2026-USC-RATE", "category": "EMERGENCY", "parameter": "usc_rate", "value": "0.08", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_EMERGENCY_PDF", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Emergency USC: 8% on all USC pay, €0.00 cut-offs, all periods."},
+
+    {"rule_id": "USC-2026-BANDS", "category": "USC", "parameter": "standard_bands", "value": [
+        {"upper": "12012", "rate": "0.005"},
+        {"upper": "28700", "rate": "0.02"},
+        {"upper": "70044", "rate": "0.03"},
+        {"upper": null, "rate": "0.08"}
+      ], "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_USC_STD", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"First €12,012 0.5% | Next €16,688 2% | Next €41,344 3% | Balance 8%\" (2026). 2% ceiling raised from €27,382 to €28,700 in Budget 2026."},
+    {"rule_id": "USC-2026-EXEMPT-THRESHOLD", "category": "USC", "parameter": "exemption_threshold", "value": "13000", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_USC_OVERVIEW", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"If your total income exceeds €13,000, you pay USC on your full income.\" Exemption status is determined by Revenue and delivered on the RPN; the engine does not self-assess it."},
+    {"rule_id": "USC-2026-REDUCED-BANDS", "category": "USC", "parameter": "reduced_bands", "value": [
+        {"upper": "12012", "rate": "0.005"},
+        {"upper": null, "rate": "0.02"}
+      ], "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_USC_REDUCED", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"0.5% on the first €12,012 and 2% on the balance.\" For age 70+ or full medical card holders with income ≤ €60,000. Applied only when the RPN USC status is REDUCED."},
+    {"rule_id": "USC-2026-REDUCED-LIMIT", "category": "USC", "parameter": "reduced_income_limit", "value": "60000", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_USC_REDUCED", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Reduced rate only where income is €60,000 or less. Used for a validation warning."},
+
+    {"rule_id": "PRSI-2026-A-H1", "category": "PRSI", "parameter": "class_A", "value": {
+        "class_j_below_weekly": "38",
+        "employee_exempt_up_to_weekly": "352",
+        "employee_rate": "0.042",
+        "credit_max_weekly": "12",
+        "credit_lower_weekly": "352.01",
+        "credit_upper_weekly": "424",
+        "credit_taper_divisor": "6",
+        "employer_lower_rate": "0.09",
+        "employer_lower_up_to_weekly": "552",
+        "employer_higher_rate": "0.1125",
+        "subclasses": [
+          {"code": "J0", "upper_weekly": "37.99"},
+          {"code": "A0", "upper_weekly": "352"},
+          {"code": "AX", "upper_weekly": "424"},
+          {"code": "AL", "upper_weekly": "552"},
+          {"code": "A1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-01-01", "effective_to": "2026-09-30", "source": "DSP_SW14_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Class A from 1 Jan 2026: A0 €38-€352 nil/9.00%; AX €352.01-€424 4.20%/9.00%; AL €424.01-€552 4.20%/9.00%; A1 >€552 4.20%/11.25%. Tapered €12 weekly PRSI credit on €352.01-€424, reduced by one-sixth of earnings over €352.01. Also in DSP Advance Notice 2026."},
+    {"rule_id": "PRSI-2026-A-H2", "category": "PRSI", "parameter": "class_A", "value": {
+        "class_j_below_weekly": "38",
+        "employee_exempt_up_to_weekly": "352",
+        "employee_rate": "0.0435",
+        "credit_max_weekly": "12",
+        "credit_lower_weekly": "352.01",
+        "credit_upper_weekly": "424",
+        "credit_taper_divisor": "6",
+        "employer_lower_rate": "0.0915",
+        "employer_lower_up_to_weekly": "552",
+        "employer_higher_rate": "0.114",
+        "subclasses": [
+          {"code": "J0", "upper_weekly": "37.99"},
+          {"code": "A0", "upper_weekly": "352"},
+          {"code": "AX", "upper_weekly": "424"},
+          {"code": "AL", "upper_weekly": "552"},
+          {"code": "A1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-10-01", "effective_to": "2026-12-31", "source": "DSP_SW14_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"From 1 October 2026: A0 €38 - €352 Nil 9.15%; AX 4.35% 9.15%; AL 4.35% 9.15%; A1 4.35% 11.40%\". PRSI credit unchanged (\"The change doesn't affect the employee PRSI Credit\"). Earnings under €38/week fall to Class J and use the Class J rule."},
+
+    {"rule_id": "PRSI-2026-H-H1", "category": "PRSI", "parameter": "class_H", "value": {
+        "employee_exempt_up_to_weekly": "352",
+        "employee_rate": "0.041",
+        "credit_max_weekly": "12",
+        "credit_lower_weekly": "352.01",
+        "credit_upper_weekly": "424",
+        "credit_taper_divisor": "6",
+        "employer_rate": "0.1055",
+        "subclasses": [
+          {"code": "H0", "upper_weekly": "352"},
+          {"code": "HX", "upper_weekly": "424"},
+          {"code": "H1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-01-01", "effective_to": "2026-09-30", "source": "DSP_ADVANCE_NOTICE_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Class H (Defence Forces): H0 ≤€352 nil/10.55%; HX €352.01-€424 4.10%/10.55%; H1 >€424 4.10%/10.55%. Credit applies to Classes A and H."},
+    {"rule_id": "PRSI-2026-H-H2", "category": "PRSI", "parameter": "class_H", "value": {
+        "employee_exempt_up_to_weekly": "352",
+        "employee_rate": "0.0425",
+        "credit_max_weekly": "12",
+        "credit_lower_weekly": "352.01",
+        "credit_upper_weekly": "424",
+        "credit_taper_divisor": "6",
+        "employer_rate": "0.107",
+        "subclasses": [
+          {"code": "H0", "upper_weekly": "352"},
+          {"code": "HX", "upper_weekly": "424"},
+          {"code": "H1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-10-01", "effective_to": "2026-12-31", "source": "DSP_SW14_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"From 1 October 2026: H0 Nil 10.70%; HX 4.25% 10.70%; H1 4.25% 10.70%\"."},
+
+    {"rule_id": "PRSI-2026-J-H1", "category": "PRSI", "parameter": "class_J", "value": {
+        "employee_rate": "0",
+        "employer_rate": "0.007",
+        "subclasses": [
+          {"code": "J0", "upper_weekly": "500"},
+          {"code": "J1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-01-01", "effective_to": "2026-09-30", "source": "DSP_ADVANCE_NOTICE_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Class J: J0 ≤€500 0/0.70%; J1 >€500 0/0.70%."},
+    {"rule_id": "PRSI-2026-J-H2", "category": "PRSI", "parameter": "class_J", "value": {
+        "employee_rate": "0",
+        "employer_rate": "0.0085",
+        "subclasses": [
+          {"code": "J0", "upper_weekly": "500"},
+          {"code": "J1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-10-01", "effective_to": "2026-12-31", "source": "DSP_SW14_2026", "verified_date": "2026-09-22", "status": "VERIFIED", "notes": "SW14 (Jan 2026): \"From 1 October 2026: J0 Up to €500 All Nil 0.85%; J1 More than €500 All Nil 0.85%\"."},
+
+    {"rule_id": "PRSI-2026-M", "category": "PRSI", "parameter": "class_M", "value": {
+        "employee_rate": "0",
+        "employer_rate": "0",
+        "subclasses": [{"code": "M", "upper_weekly": null}]
+      }, "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "DSP_ADVANCE_NOTICE_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Class M: nil contribution liability (e.g. under 16, over pension age, certain occupational pensions)."},
+
+    {"rule_id": "PRSI-2026-S-H1", "category": "PRSI", "parameter": "class_S", "value": {
+        "employee_rate": "0.042",
+        "employer_rate": "0",
+        "subclasses": [
+          {"code": "S0", "upper_weekly": "500"},
+          {"code": "S1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-01-01", "effective_to": "2026-09-30", "source": "DSP_ADVANCE_NOTICE_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Class S via PAYE (e.g. proprietary directors): S0 ≤€500 4.20%; S1 >€500 4.20%, no employer share."},
+    {"rule_id": "PRSI-2026-S-H2", "category": "PRSI", "parameter": "class_S", "value": {
+        "employee_rate": "0.0435",
+        "employer_rate": "0",
+        "subclasses": [
+          {"code": "S0", "upper_weekly": "500"},
+          {"code": "S1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-10-01", "effective_to": "2026-12-31", "source": "DSP_SW14_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"From 1 October 2026: S0 Up to €500 4.35%; S1 More than €500 4.35%\"."},
+
+    {"rule_id": "PRSI-2026-K-H1", "category": "PRSI", "parameter": "class_K", "value": {
+        "employee_rate": "0.042",
+        "employer_rate": "0",
+        "employee_exempt_up_to_weekly": "100",
+        "subclasses": [
+          {"code": "M", "upper_weekly": "100"},
+          {"code": "K1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-01-01", "effective_to": "2026-09-30", "source": "DSP_SW14_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"K1: Certain public office holders pay PRSI at a rate of 4.2% until 30 September 2026 ... where their income is over €5,200 a year\" (€100/week)."},
+    {"rule_id": "PRSI-2026-K-H2", "category": "PRSI", "parameter": "class_K", "value": {
+        "employee_rate": "0.0435",
+        "employer_rate": "0",
+        "employee_exempt_up_to_weekly": "100",
+        "subclasses": [
+          {"code": "M", "upper_weekly": "100"},
+          {"code": "K1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-10-01", "effective_to": "2026-12-31", "source": "DSP_SW14_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"(4.35% from 1 October 2026)\"."},
+
+    {"rule_id": "PRSI-2026-B-H1", "category": "PRSI", "parameter": "class_B", "value": {
+        "employee_exempt_up_to_weekly": "352",
+        "employee_lower_rate": "0.011",
+        "employee_lower_up_to_weekly": "1443",
+        "employee_higher_rate": "0.042",
+        "employer_rate": "0.0221",
+        "subclasses": [
+          {"code": "B0", "upper_weekly": "352"},
+          {"code": "BX", "upper_weekly": "500"},
+          {"code": "B1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-01-01", "effective_to": "2026-09-30", "source": "DSP_ADVANCE_NOTICE_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Class B (pre-1995 public servants): B0 ≤€352 nil/2.21%; BX €352.01-€500 1.10%/2.21%; B1 €500.01-€1,443 1.10%, balance over €1,443 4.20%; employer 2.21%."},
+    {"rule_id": "PRSI-2026-B-H2", "category": "PRSI", "parameter": "class_B", "value": {
+        "employee_exempt_up_to_weekly": "352",
+        "employee_lower_rate": "0.0125",
+        "employee_lower_up_to_weekly": "1443",
+        "employee_higher_rate": "0.0435",
+        "employer_rate": "0.0236",
+        "subclasses": [
+          {"code": "B0", "upper_weekly": "352"},
+          {"code": "BX", "upper_weekly": "500"},
+          {"code": "B1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-10-01", "effective_to": "2026-12-31", "source": "DSP_SW14_2026", "verified_date": "2026-09-22", "status": "VERIFIED", "notes": "SW14 (Jan 2026): \"From 1 October 2026: B0 Up to €352 Nil 2.36%; BX €352.01 - €500 1.25% 2.36%; B1 More than €500 First €1443 1.25% 2.36% Balance 4.35% 2.36%\"."},
+
+    {"rule_id": "PRSI-2026-C-H1", "category": "PRSI", "parameter": "class_C", "value": {
+        "employee_exempt_up_to_weekly": "352",
+        "employee_lower_rate": "0.011",
+        "employee_lower_up_to_weekly": "1443",
+        "employee_higher_rate": "0.042",
+        "employer_rate": "0.0205",
+        "subclasses": [
+          {"code": "C0", "upper_weekly": "352"},
+          {"code": "CX", "upper_weekly": "500"},
+          {"code": "C1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-01-01", "effective_to": "2026-09-30", "source": "DSP_ADVANCE_NOTICE_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Class C (commissioned officers, pre-1995): as Class B with employer 2.05%."},
+    {"rule_id": "PRSI-2026-C-H2", "category": "PRSI", "parameter": "class_C", "value": {
+        "employee_exempt_up_to_weekly": "352",
+        "employee_lower_rate": "0.0125",
+        "employee_lower_up_to_weekly": "1443",
+        "employee_higher_rate": "0.0435",
+        "employer_rate": "0.022",
+        "subclasses": [
+          {"code": "C0", "upper_weekly": "352"},
+          {"code": "CX", "upper_weekly": "500"},
+          {"code": "C1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-10-01", "effective_to": "2026-12-31", "source": "DSP_SW14_2026", "verified_date": "2026-09-22", "status": "VERIFIED", "notes": "SW14 (Jan 2026): \"From 1 October 2026: C0 Nil 2.20%; CX 1.25% 2.20%; C1 First €1443 1.25%, Balance 4.35%, employer 2.20%\"."},
+
+    {"rule_id": "PRSI-2026-D-H1", "category": "PRSI", "parameter": "class_D", "value": {
+        "employee_exempt_up_to_weekly": "352",
+        "employee_lower_rate": "0.011",
+        "employee_lower_up_to_weekly": "1443",
+        "employee_higher_rate": "0.042",
+        "employer_rate": "0.0255",
+        "subclasses": [
+          {"code": "D0", "upper_weekly": "352"},
+          {"code": "DX", "upper_weekly": "500"},
+          {"code": "D1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-01-01", "effective_to": "2026-09-30", "source": "DSP_ADVANCE_NOTICE_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Class D (permanent public servants pre-1995): as Class B with employer 2.55%."},
+    {"rule_id": "PRSI-2026-D-H2", "category": "PRSI", "parameter": "class_D", "value": {
+        "employee_exempt_up_to_weekly": "352",
+        "employee_lower_rate": "0.0125",
+        "employee_lower_up_to_weekly": "1443",
+        "employee_higher_rate": "0.0435",
+        "employer_rate": "0.027",
+        "subclasses": [
+          {"code": "D0", "upper_weekly": "352"},
+          {"code": "DX", "upper_weekly": "500"},
+          {"code": "D1", "upper_weekly": null}
+        ]
+      }, "effective_from": "2026-10-01", "effective_to": "2026-12-31", "source": "DSP_SW14_2026", "verified_date": "2026-09-22", "status": "VERIFIED", "notes": "SW14 (Jan 2026): \"From 1 October 2026: D0 Nil 2.70%; DX 1.25% 2.70%; D1 First €1443 1.25%, Balance 4.35%, employer 2.70%\"."},
+
+    {"rule_id": "PRSI-2026-PERIOD-CONVERSION", "category": "PRSI", "parameter": "weeks_per_period", "value": {"WEEKLY": "1", "FORTNIGHTLY": "2", "MONTHLY": "4.333333333333"}, "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "DSP_SW14_2026", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Weekly thresholds are scaled by 52/12 for monthly pay. Evidence: SW14 monthly bands A0 '€165* to €1,525', AX to '€1,837', AL to '€2,392' = €38/€352/€424/€552 x 52/12. The same scaling is applied to the €12 credit (max €52/month) - SW14 only shows the credit weekly, so this is documented in LIMITATIONS.md."},
+
+    {"rule_id": "LPT-2026-METHOD", "category": "LPT", "parameter": "deduction_method", "value": "EQUAL_SPREAD_FROM_RPN", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_LPT_DEDUCTION", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"LPT may be deducted at source from employees' wages where it is shown on the employee's Revenue Payroll Notification (RPN)... LPT payments are spread equally over the year.\" The engine only deducts the amount on the RPN; it never computes an LPT liability itself."},
+
+    {"rule_id": "PEN-2026-AGE-LIMITS", "category": "PENSION", "parameter": "age_related_limits", "value": [
+        {"min_age": 0, "percent": "0.15"},
+        {"min_age": 30, "percent": "0.20"},
+        {"min_age": 40, "percent": "0.25"},
+        {"min_age": 50, "percent": "0.30"},
+        {"min_age": 55, "percent": "0.35"},
+        {"min_age": 60, "percent": "0.40"}
+      ], "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_PENSION_LIMITS", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Under 30 15%; 30-39 20%; 40-49 25%; 50-54 30%; 55-59 35%; 60+ 40%."},
+    {"rule_id": "PEN-2026-EARNINGS-CAP", "category": "PENSION", "parameter": "earnings_cap", "value": "115000", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_PENSION_LIMITS", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"The maximum amount of earnings taken into account for calculating tax relief is €115,000 per year.\""},
+    {"rule_id": "PEN-2026-TREATMENT", "category": "PENSION", "parameter": "employee_contribution_treatment", "value": {
+        "OCCUPATIONAL": {"relieve_paye": true, "relieve_usc": false, "relieve_prsi": false},
+        "AVC": {"relieve_paye": true, "relieve_usc": false, "relieve_prsi": false},
+        "PRSA": {"relieve_paye": true, "relieve_usc": false, "relieve_prsi": false},
+        "RAC": {"relieve_paye": false, "relieve_usc": false, "relieve_prsi": false}
+      }, "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_EMPLOYERS_GUIDE", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Net pay arrangement: ordinary superannuation contributions deducted before tax. \"There is no relief from Universal Social Charge (USC) or Pay Related Social Insurance (PRSI) for employee pension contributions\" (REV_PENSION_RELIEF). RAC premiums are not relieved through payroll - the employee claims relief directly."},
+
+    {"rule_id": "BIK-2026-NOTIONAL-PAY", "category": "BIK", "parameter": "notional_pay_treatment", "value": {"paye": true, "usc": true, "prsi": true}, "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_EMPLOYERS_GUIDE", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"The value of any non-cash benefit or perquisite (called 'Notional Pay') must be added to pay and tax, USC and PRSI must be applied in the normal way.\""},
+    {"rule_id": "BIK-2026-CAR-OMV-REDUCTION", "category": "BIK", "parameter": "car_omv_reduction", "value": {"A1": "10000", "A": "10000", "B": "10000", "C": "10000", "D": "10000", "E": "0"}, "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_BIK_CAR", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "€10,000 OMV reduction for 2026 (categories A1-D, not E); tapers to €5,000 in 2027 and €2,500 in 2028 (Budget 2026)."},
+    {"rule_id": "BIK-2026-CAR-EV-REDUCTION", "category": "BIK", "parameter": "car_ev_additional_reduction", "value": "20000", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_BIK_CAR", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Category A1 (0g/km): \"an additional reduction to the Original Market Value of €20,000 will apply for 2026.\""},
+    {"rule_id": "BIK-2026-CAR-CATEGORIES", "category": "BIK", "parameter": "car_co2_categories", "value": [
+        {"code": "A1", "max_co2": "0"},
+        {"code": "A", "max_co2": "59"},
+        {"code": "B", "max_co2": "99"},
+        {"code": "C", "max_co2": "139"},
+        {"code": "D", "max_co2": "179"},
+        {"code": "E", "max_co2": null}
+      ], "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_BIK_CAR", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "CO2 g/km category upper limits (inclusive)."},
+    {"rule_id": "BIK-2026-CAR-PERCENTAGES", "category": "BIK", "parameter": "car_business_km_percentages", "value": [
+        {"max_km": 26000, "A1": "0.15", "A": "0.225", "B": "0.2625", "C": "0.30", "D": "0.3375", "E": "0.375"},
+        {"max_km": 39000, "A1": "0.12", "A": "0.18", "B": "0.21", "C": "0.24", "D": "0.27", "E": "0.30"},
+        {"max_km": 48000, "A1": "0.09", "A": "0.135", "B": "0.1575", "C": "0.18", "D": "0.2025", "E": "0.225"},
+        {"max_km": null, "A1": "0.06", "A": "0.09", "B": "0.105", "C": "0.12", "D": "0.135", "E": "0.15"}
+      ], "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_BIK_CAR", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Business kilometre bands and percentage of (reduced) OMV by vehicle category."},
+    {"rule_id": "BIK-2026-MEDICAL", "category": "BIK", "parameter": "medical_insurance_valuation", "value": "GROSS_PREMIUM", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "source": "REV_BIK_MEDICAL", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"The value of the benefit, to your employee, is the gross value of the insurance premium.\" Employee relief (20% of gross premium) comes through their tax credits on the RPN, not the payroll engine."},
+    {"rule_id": "BIK-2026-SMALL-BENEFIT", "category": "BIK", "parameter": "small_benefit_exemption", "value": {"max_value": "1500", "max_count": 5}, "effective_from": "2025-01-01", "effective_to": null, "source": "REV_BIK_SMALL", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Up to five non-cash small benefits a year, combined value up to €1,500, from 1 January 2025."}
+  ]
+}

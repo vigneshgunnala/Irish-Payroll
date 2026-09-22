@@ -1,0 +1,34 @@
+{
+  "rule_set_id": "IE-2025",
+  "jurisdiction": "IE",
+  "tax_year": 2025,
+  "description": "Partial 2025 rule set kept to prove that historical tax years are stored independently of 2026. PRSI for 2025 is intentionally NOT loaded (not re-verified in this build), so any 2025 payroll that needs PRSI is blocked with RULE_MISSING rather than silently using 2026 rates.",
+  "sources": {
+    "REV_TAX_CHART": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx",
+      "document": "Tax rates, bands and reliefs - Tax relief charts (2026 and 2025)"
+    },
+    "REV_USC_STD": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/jobs-and-pensions/usc/standard-rates-thresholds.aspx",
+      "document": "Standard rates and thresholds of USC (2025 table)"
+    },
+    "REV_EMERGENCY_PDF": {
+      "authority": "Revenue Commissioners",
+      "url": "https://www.revenue.ie/en/jobs-and-pensions/documents/emergency-rates.pdf",
+      "document": "RPC020012 - The Emergency Basis of Tax & USC Deduction (2022-2026 tables)"
+    }
+  },
+  "rules": [
+    {"rule_id": "PAYE-2025-RATE-STD", "category": "PAYE", "parameter": "standard_rate", "value": "0.20", "effective_from": "2025-01-01", "effective_to": "2025-12-31", "source": "REV_TAX_CHART", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "2025 bands identical to 2026."},
+    {"rule_id": "PAYE-2025-RATE-HIGH", "category": "PAYE", "parameter": "higher_rate", "value": "0.40", "effective_from": "2025-01-01", "effective_to": "2025-12-31", "source": "REV_TAX_CHART", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "40% higher rate, 2025 (tax relief chart shows 2025 bands identical to 2026)."},
+    {"rule_id": "PAYE-2025-PERIOD-ROUNDING", "category": "PAYE", "parameter": "period_amount_rounding", "value": "ROUND_UP_CENT", "effective_from": "2025-01-01", "effective_to": "2025-12-31", "source": "REV_EMERGENCY_PDF", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "Same Revenue convention as 2026."},
+    {"rule_id": "USC-2025-BANDS", "category": "USC", "parameter": "standard_bands", "value": [
+        {"upper": "12012", "rate": "0.005"},
+        {"upper": "27382", "rate": "0.02"},
+        {"upper": "70044", "rate": "0.03"},
+        {"upper": null, "rate": "0.08"}
+      ], "effective_from": "2025-01-01", "effective_to": "2025-12-31", "source": "REV_USC_STD", "verified_date": "2026-09-21", "status": "VERIFIED", "notes": "\"First €12,012 0.5% | Next €15,370 2% | Next €42,662 3% | Balance 8%\" (2025)."}
+  ]
+}
