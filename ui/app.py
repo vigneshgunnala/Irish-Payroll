@@ -7,14 +7,16 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import streamlit as st  # noqa: E402
+# Streamlit Cloud: copy root-level secrets into environment variables so the app settings see them
 import os  # noqa: E402
+
+import streamlit as st  # noqa: E402
 
 try:
     for _k, _v in st.secrets.items():
         if isinstance(_v, (str, int, float, bool)):
             os.environ.setdefault(_k, str(_v))
-except Exception:  # noqa: BLE001
+except Exception:  # noqa: BLE001 - no secrets file locally is fine
     pass
 from sqlalchemy import select  # noqa: E402
 
@@ -35,13 +37,16 @@ div[data-testid="stSidebarNav"] span{font-size:0.92rem}
 
 
 def login() -> None:
+    from app.core.config import get_settings
+
+    cfg = get_settings()
     c = st.columns([1, 1.2, 1])[1]
     with c:
         st.markdown("### 💶 Irish Payroll Management & Compliance")
         st.caption("Portfolio prototype · synthetic data · 2026 Revenue/DSP rules with sources")
         with st.form("login"):
             email = st.text_input("Email", value="payroll.admin@demo.ie")
-            pw = st.text_input("Password", type="password")
+            pw = st.text_input("Password", type="password", value=cfg.demo_password if cfg.public_demo else "")
             ok = st.form_submit_button("Sign in", type="primary", use_container_width=True)
         if ok:
             with db() as s:
@@ -53,8 +58,17 @@ def login() -> None:
                     st.rerun()
                 audit(s, None, "LOGIN_FAILED", "user", None, None, {"email": email})
             st.error("Incorrect email or password.")
-        st.caption("Demo users are created by `python -m scripts.seed` using PAYROLL_DEMO_PASSWORD.")
+        if cfg.public_demo:
+            st.info("**Public demo** — all people and figures are synthetic. Sign in as `payroll.admin@demo.ie` "
+                    "(prefilled). Other roles: `payroll.analyst@`, `hr.admin@`, `finance.manager@`, `sys.admin@` "
+                    f"(all `…@demo.ie`). Password: `{cfg.demo_password}`")
+        else:
+            st.caption("Demo users are created by `python -m scripts.seed` using PAYROLL_DEMO_PASSWORD.")
 
+
+from ui.common import _boot  # noqa: E402
+
+_boot()
 
 if not user():
     login()

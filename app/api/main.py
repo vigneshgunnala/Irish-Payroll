@@ -10,7 +10,7 @@ from sqlalchemy import text
 from app.api.routers import admin, core, payroll
 from app.core.config import get_settings
 from app.core.logging import configure_logging
-from app.db.base import get_engine, init_db
+from app.db.base import get_engine
 
 settings = get_settings()
 configure_logging(settings.log_level)
@@ -19,7 +19,9 @@ configure_logging(settings.log_level)
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    init_db()
+    from app.services.bootstrap import ensure_ready
+
+    ensure_ready()
     yield
 
 

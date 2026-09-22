@@ -1,0 +1,45 @@
+# Render Blueprint: Dashboard → New → Blueprint → pick this repo.
+# Creates a Postgres database, the Streamlit UI and the FastAPI API (Swagger at /docs).
+databases:
+  - name: payroll-db
+    plan: free
+    databaseName: payroll
+    user: payroll
+
+services:
+  - type: web
+    name: irish-payroll-ui
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: alembic upgrade head && streamlit run ui/app.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: PAYROLL_DATABASE_URL
+        fromDatabase: {name: payroll-db, property: connectionString}
+      - key: PAYROLL_SECRET_KEY
+        generateValue: true
+      - key: PAYROLL_AUTO_SEED
+        value: "true"
+      - key: PAYROLL_PUBLIC_DEMO
+        value: "true"
+      - key: PAYROLL_DEMO_PASSWORD
+        sync: false   # you type it in the Render dashboard
+
+  - type: web
+    name: irish-payroll-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: alembic upgrade head && uvicorn app.api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: PAYROLL_DATABASE_URL
+        fromDatabase: {name: payroll-db, property: connectionString}
+      - key: PAYROLL_SECRET_KEY
+        generateValue: true
+      - key: PAYROLL_DEMO_PASSWORD
+        sync: false

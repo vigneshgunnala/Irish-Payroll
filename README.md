@@ -92,6 +92,8 @@ streamlit run ui/app.py           # UI  → http://localhost:8501  (payroll.admi
 uvicorn app.api.main:app --reload # API → http://localhost:8000/docs
 ```
 
+**Deploy online:** see [DEPLOYMENT.md](docs/DEPLOYMENT.md) (Streamlit Community Cloud in ~5 minutes, or Render with PostgreSQL + API).
+
 PostgreSQL: set `PAYROLL_DATABASE_URL=postgresql+psycopg://user:pass@host/db`, run `alembic upgrade head`, then `python -m scripts.seed`.
 Docker: `cp .env.example .env` (edit secrets) → `docker compose up --build`. *(The Dockerfile/compose stack is provided but could not be executed in my build environment because the container registry was blocked — the steps it runs — `alembic upgrade head`, the seed, and the full test suite including the API — were verified directly against PostgreSQL 16.)*
 
@@ -120,7 +122,7 @@ Certified Revenue integration (RPN retrieval + payroll submission via ROS certif
 
 ## Documentation
 
-[ARCHITECTURE](docs/ARCHITECTURE.md) · [PAYROLL_RULES](docs/PAYROLL_RULES.md) · [DATABASE_SCHEMA](docs/DATABASE_SCHEMA.md) · [API_DOCUMENTATION](docs/API_DOCUMENTATION.md) · [TESTING](docs/TESTING.md) · [REVENUE_INTEGRATION](docs/REVENUE_INTEGRATION.md) · [SECURITY](docs/SECURITY.md) · [LIMITATIONS](docs/LIMITATIONS.md) · [CAREER_PORTFOLIO](docs/CAREER_PORTFOLIO.md)
+[ARCHITECTURE](docs/ARCHITECTURE.md) · [DEPLOYMENT](docs/DEPLOYMENT.md) · [PAYROLL_RULES](docs/PAYROLL_RULES.md) · [DATABASE_SCHEMA](docs/DATABASE_SCHEMA.md) · [API_DOCUMENTATION](docs/API_DOCUMENTATION.md) · [TESTING](docs/TESTING.md) · [REVENUE_INTEGRATION](docs/REVENUE_INTEGRATION.md) · [SECURITY](docs/SECURITY.md) · [LIMITATIONS](docs/LIMITATIONS.md) · [CAREER_PORTFOLIO](docs/CAREER_PORTFOLIO.md)
 
 ## What I learned
 

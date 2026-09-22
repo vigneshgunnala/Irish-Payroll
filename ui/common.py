@@ -12,7 +12,7 @@ import streamlit as st
 from sqlalchemy import select
 
 from app.core.security import Perm, has_perm
-from app.db.base import SessionLocal, init_db
+from app.db.base import SessionLocal
 from app.db.models import Company, User
 
 # Validated categorical palette (dataviz reference palette, light mode) - fixed order, never cycled
@@ -35,9 +35,11 @@ pio.templates["payroll"] = go.layout.Template(layout=go.Layout(
 pio.templates.default = "payroll"
 
 
-@st.cache_resource
+@st.cache_resource(show_spinner="Preparing the payroll database (first start builds the demo data - about a minute)…")
 def _boot() -> bool:
-    init_db()
+    from app.services.bootstrap import ensure_ready
+
+    ensure_ready()  # tables + rule sync; seeds demo data once when PAYROLL_AUTO_SEED=true
     return True
 
 
