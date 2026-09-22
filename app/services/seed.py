@@ -75,13 +75,21 @@ def _month_bounds(year: int, month: int) -> tuple[date, date]:
     return start, end
 
 
+def ensure_role_records(session: Session) -> None:
+    """Role table mirrors ROLE_PERMISSIONS (kept in sync when roles/permissions are added)."""
+    for role in Role:
+        perms = sorted(p.value for p in ROLE_PERMISSIONS[role])
+        rec = session.scalar(select(RoleRecord).where(RoleRecord.code == role.value))
+        if rec is None:
+            session.add(RoleRecord(code=role.value, description=role.value.replace("_", " ").title(), permissions=perms))
+        elif rec.permissions != perms:
+            rec.permissions = perms
+    session.flush()
+
+
 def ensure_roles_and_users(session: Session, password: str | None = None) -> dict[str, str]:
     """Create roles + one demo user per role. Password comes from the caller/env - never hard-coded."""
-    for role in Role:
-        if not session.scalar(select(RoleRecord).where(RoleRecord.code == role.value)):
-            session.add(RoleRecord(code=role.value, description=role.value.replace("_", " ").title(),
-                                   permissions=sorted(p.value for p in ROLE_PERMISSIONS[role])))
-    session.flush()
+    ensure_role_records(session)
     password = password or secrets.token_urlsafe(12)
     creds = {}
     for role, email, name in [

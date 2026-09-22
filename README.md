@@ -1,6 +1,6 @@
 # 💶 Irish Payroll Management & Compliance System
-**🔗 Live demo:** https://irish-payroll-vignesh.streamlit.app — sign in with the prefilled demo login (all data is synthetic).
 
+**🔗 Live demo:** https://irish-payroll-vignesh.streamlit.app — opens straight into a **read-only** demo: explore every page, filter, calculation drill-down and download; nothing can be changed. All data is synthetic.
 
 A portfolio-grade prototype of an Irish payroll platform: **gross-to-net for PAYE, USC, PRSI, LPT, pensions and BIK**, bulk payroll runs for 300+ employees, validation and exception queues, reconciliation, payslips, GL journals, Revenue submission *preparation*, payroll analytics and a full audit trail.
 

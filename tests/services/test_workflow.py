@@ -233,3 +233,33 @@ def test_bulk_300_employee_run_performance(n, tmp_path):
         assert elapsed < 20
     Base.metadata.drop_all(get_engine())
     _ = Company
+
+
+def test_demo_viewer_is_read_only():
+    from app.core.security import ROLE_PERMISSIONS, WRITE_PERMS, Perm, Role
+
+    viewer = ROLE_PERMISSIONS[Role.DEMO_VIEWER]
+    assert not viewer & WRITE_PERMS
+    assert {Perm.PAYROLL_READ, Perm.EMPLOYEE_READ, Perm.REPORTS, Perm.ANALYTICS} <= viewer
+    # every permission that exists is classified as either read or write
+    assert all(p in WRITE_PERMS or p.value.endswith(":read") for p in Perm)
+
+
+def test_public_demo_viewer_and_password_rotation(tmp_path):
+    from app.core.security import DEMO_VIEWER_EMAIL, verify_password
+    from app.services.bootstrap import ensure_demo_viewer, sync_demo_passwords
+
+    url = os.environ.get("PAYROLL_TEST_DATABASE_URL") or f"sqlite:///{tmp_path / 'viewer.db'}"
+    Base.metadata.drop_all(get_engine(url))
+    init_db(url)
+    with session_scope() as s:
+        ensure_roles_and_users(s, "test-password-123")
+        v1 = ensure_demo_viewer(s)
+        v2 = ensure_demo_viewer(s)  # idempotent
+        assert v1.user_id == v2.user_id and v1.role == "DEMO_VIEWER" and v1.email == DEMO_VIEWER_EMAIL
+        assert not verify_password("test-password-123", v1.password_hash)
+        assert sync_demo_passwords(s, "rotated-password-456") == 5
+        assert sync_demo_passwords(s, "rotated-password-456") == 0
+        admin = _admin(s)
+        assert verify_password("rotated-password-456", admin.password_hash)
+    Base.metadata.drop_all(get_engine())

@@ -17,6 +17,7 @@ class Role(str, Enum):
     HR_ADMIN = "HR_ADMIN"
     FINANCE_MANAGER = "FINANCE_MANAGER"
     SYSTEM_ADMIN = "SYSTEM_ADMIN"
+    DEMO_VIEWER = "DEMO_VIEWER"  # public portfolio demo: look at everything, change nothing
 
 
 class Perm(str, Enum):
@@ -33,13 +34,14 @@ class Perm(str, Enum):
     USERS_MANAGE = "users:manage"
     AUDIT_READ = "audit:read"
     REVENUE_PREPARE = "revenue:prepare"
+    REVENUE_READ = "revenue:read"
     COMPANY_WRITE = "company:write"
 
 
 ROLE_PERMISSIONS: dict[Role, set[Perm]] = {
     Role.PAYROLL_ADMIN: {
         Perm.EMPLOYEE_READ, Perm.EMPLOYEE_WRITE, Perm.TAX_PROFILE_WRITE, Perm.PAYROLL_RUN, Perm.PAYROLL_APPROVE,
-        Perm.PAYROLL_READ, Perm.REPORTS, Perm.ANALYTICS, Perm.RULES_READ, Perm.REVENUE_PREPARE, Perm.AUDIT_READ,
+        Perm.PAYROLL_READ, Perm.REPORTS, Perm.ANALYTICS, Perm.RULES_READ, Perm.REVENUE_PREPARE, Perm.REVENUE_READ, Perm.AUDIT_READ,
     },
     Role.PAYROLL_ANALYST: {Perm.EMPLOYEE_READ, Perm.PAYROLL_READ, Perm.REPORTS, Perm.ANALYTICS, Perm.RULES_READ},
     Role.HR_ADMIN: {Perm.EMPLOYEE_READ, Perm.EMPLOYEE_WRITE},
@@ -47,7 +49,15 @@ ROLE_PERMISSIONS: dict[Role, set[Perm]] = {
     Role.SYSTEM_ADMIN: {
         Perm.USERS_MANAGE, Perm.RULES_READ, Perm.RULES_WRITE, Perm.AUDIT_READ, Perm.COMPANY_WRITE, Perm.EMPLOYEE_READ,
     },
+    # read-only: every page, filter, drill-down and download - but no create/calculate/approve/edit/import permission
+    Role.DEMO_VIEWER: {
+        Perm.EMPLOYEE_READ, Perm.PAYROLL_READ, Perm.REPORTS, Perm.ANALYTICS, Perm.RULES_READ, Perm.AUDIT_READ, Perm.REVENUE_READ,
+    },
 }
+
+WRITE_PERMS = frozenset({Perm.EMPLOYEE_WRITE, Perm.TAX_PROFILE_WRITE, Perm.PAYROLL_RUN, Perm.PAYROLL_APPROVE, Perm.RULES_WRITE,
+                         Perm.USERS_MANAGE, Perm.REVENUE_PREPARE, Perm.COMPANY_WRITE})
+DEMO_VIEWER_EMAIL = "demo.viewer@demo.ie"
 
 
 def has_perm(role: str, perm: Perm) -> bool:

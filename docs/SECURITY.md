@@ -17,17 +17,22 @@ Payroll data is sensitive personal and financial data. Controls in this prototyp
 
 ## Roles
 
-| Permission | Payroll Admin | Payroll Analyst | HR Admin | Finance Manager | System Admin |
-|---|:-:|:-:|:-:|:-:|:-:|
-| employee read / write | ✅ / ✅ | ✅ / – | ✅ / ✅ | – | ✅ / – |
-| tax profile / RPN write | ✅ | – | – | – | – |
-| payroll run / approve | ✅ / ✅ | – | – | – | – |
-| payroll read, reports | ✅ | ✅ | – | ✅ | – |
-| analytics | ✅ | ✅ | – | ✅ | – |
-| rules read / write | ✅ / – | ✅ / – | – | ✅ / – | ✅ / ✅ |
-| Revenue prep | ✅ | – | – | – | – |
-| audit read | ✅ | – | – | – | ✅ |
-| users, company config | – | – | – | – | ✅ |
+| Permission | Payroll Admin | Payroll Analyst | HR Admin | Finance Manager | System Admin | Demo Viewer |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|
+| employee read / write | ✅ / ✅ | ✅ / – | ✅ / ✅ | – | ✅ / – | ✅ / – |
+| tax profile / RPN write | ✅ | – | – | – | – | – |
+| payroll run / approve | ✅ / ✅ | – | – | – | – | – |
+| payroll read, reports | ✅ | ✅ | – | ✅ | – | ✅ |
+| analytics | ✅ | ✅ | – | ✅ | – | ✅ |
+| rules read / write | ✅ / – | ✅ / – | – | ✅ / – | ✅ / ✅ | ✅ / – |
+| Revenue prep / read | ✅ / ✅ | – | – | – | – | – / ✅ |
+| audit read | ✅ | – | – | – | ✅ | ✅ |
+| users, company config | – | – | – | – | ✅ | – |
+
+**Public demo (`PAYROLL_PUBLIC_DEMO=true`).** Visitors are signed straight into `demo.viewer@demo.ie` (role `DEMO_VIEWER`,
+random unguessable password). The role holds no write permission — a test asserts it shares nothing with `WRITE_PERMS` — so no
+create/calculate/approve/edit/import button is rendered; and as a second layer the UI never commits a database session for that
+role. The owner signs in via *Owner sign in* with the private `PAYROLL_DEMO_PASSWORD`.
 
 ## Not done (production hardening backlog)
 

@@ -9,7 +9,7 @@ Jan–Sep 2026 payroll history (≈45–60 s, once). Tested on SQLite and Postgr
 | `PAYROLL_SECRET_KEY` | JWT signing key (required outside dev) |
 | `PAYROLL_DEMO_PASSWORD` | Password for the five `…@demo.ie` users |
 | `PAYROLL_AUTO_SEED` | `true` → seed demo data if the DB is empty |
-| `PAYROLL_PUBLIC_DEMO` | `true` → login page shows and prefills the demo login (synthetic data only) |
+| `PAYROLL_PUBLIC_DEMO` | `true` → visitors are signed straight into a **read-only** `DEMO_VIEWER` account (no password shown). Owners use *Owner sign in* in the sidebar with `PAYROLL_DEMO_PASSWORD` |
 | `PAYROLL_DATABASE_URL` | Optional. Default SQLite file. `postgres://…` / `postgresql://…` URLs are accepted as-is |
 
 ---
@@ -51,6 +51,9 @@ UI on :8501, API on :8000. (Compose file provided; not executed in the original 
 
 ## Before sharing the link
 
+* The public demo is read-only: the `DEMO_VIEWER` role has no write permission (no write buttons are rendered) and, as a
+  second safety net, UI sessions for that role are never committed. Keep `PAYROLL_DEMO_PASSWORD` private — it is the owner login.
+  Changing it takes effect on the next restart (demo passwords are re-synced at start-up).
 * Keep `PAYROLL_PUBLIC_DEMO=true` only for synthetic data. For anything real: set it to `false`, set
   `PAYROLL_ENV=production` (enforces a secret key and four-eyes approval) and put the app behind HTTPS/SSO.
 * Add the live link to the top of `README.md`, your CV and LinkedIn *Featured* section.

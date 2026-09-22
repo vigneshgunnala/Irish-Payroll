@@ -11,7 +11,7 @@ import plotly.io as pio
 import streamlit as st
 from sqlalchemy import select
 
-from app.core.security import Perm, has_perm
+from app.core.security import Perm, Role, has_perm
 from app.db.base import SessionLocal
 from app.db.models import Company, User
 
@@ -50,15 +50,24 @@ except ImportError:  # pragma: no cover - older Streamlit
     _CONTROL_FLOW = ()
 
 
+def read_only() -> bool:
+    u = st.session_state.get("user")
+    return bool(u and u["role"] == Role.DEMO_VIEWER.value)
+
+
 @contextmanager
 def db():
+    """One DB session per block. For the read-only demo visitor nothing is ever committed (belt and braces:
+    the role also has no write permissions, so the write buttons are not shown at all)."""
     _boot()
     s = SessionLocal()
+    # read-only: never commit - close() below discards any pending change (rollback() would expire loaded rows)
+    finish = (lambda: None) if read_only() else s.commit
     try:
         yield s
-        s.commit()
+        finish()
     except _CONTROL_FLOW:
-        s.commit()
+        finish()
         raise
     except Exception:
         s.rollback()

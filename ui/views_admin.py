@@ -178,7 +178,8 @@ def rules() -> None:
 
 
 def revenue() -> None:
-    guard(Perm.REVENUE_PREPARE)
+    if not (can(Perm.REVENUE_PREPARE) or can(Perm.REVENUE_READ)):
+        guard(Perm.REVENUE_PREPARE)
     page_header("Revenue submission preparation",
                 "Builds and validates payroll submission data. Nothing is transmitted to Revenue from this prototype.")
     st.info("Direct submission requires Revenue's PAYE Modernisation API, a ROS digital certificate and message signing, which "
@@ -187,7 +188,7 @@ def revenue() -> None:
         run = _pick_run(s, "rev_run", statuses=FINAL_STATUSES)
         if not run:
             return
-        if run.status == "APPROVED" and st.button("Prepare submission data", type="primary"):
+        if can(Perm.REVENUE_PREPARE) and run.status == "APPROVED" and st.button("Prepare submission data", type="primary"):
             sub = prepare_submission(s, current_user_obj(s), run)
             if sub.status == "PREPARED":
                 mark_submitted(s, current_user_obj(s), run)
@@ -197,7 +198,7 @@ def revenue() -> None:
         if not subs:
             st.caption("No submission prepared for this run yet." + ("" if run.status == "APPROVED" else
                                                                       " (Historical demo runs were completed without one.)"))
-            if run.status != "APPROVED" and st.button("Prepare submission data (re-export)"):
+            if can(Perm.REVENUE_PREPARE) and run.status != "APPROVED" and st.button("Prepare submission data (re-export)"):
                 prepare_submission(s, current_user_obj(s), run)
                 st.rerun()
             return
